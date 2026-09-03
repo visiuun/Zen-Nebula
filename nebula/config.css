@@ -52,8 +52,27 @@ without searching through the code directly */
   ) !important;
 }
 
-/* DO NOT ADD OTHER CSS BELOW */
-/* More styles and options will come soon here! */
+/* 🚫 Remove Topbar Frame / White Border */
+#navigator-toolbox,
+#navigator-toolbox:not([animate="true"]) #titlebar::before,
+#navigator-toolbox:not([animate="true"]) #titlebar::after,
+#titlebar,
+#titlebar::before,
+#titlebar::after,
+#zen-toolbar-background,
+#zen-appcontent-navbar-container,
+#zen-appcontent-navbar-wrapper,
+#nav-bar,
+#nav-bar::before,
+#nav-bar::after {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#navigator-toolbox {
+  --zen-compact-float: 0px !important;
+}
 
 /* Pre-defined backup values */
 :root {
