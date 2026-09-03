@@ -5,75 +5,168 @@ without searching through the code directly */
 
 :root {
   /* ✨ Glass & Blur */
-  --nebula-glass: blur(var(--var-nebula-glass-blur))
-    saturate(var(--var-nebula-glass-saturation)) !important;
+  --nebula-glass: blur(var(--var-nebula-glass-blur, 32px))
+    saturate(var(--var-nebula-glass-saturation, 140%)) !important;
   --nebula-color-glass: light-dark(
-    var(--var-nebula-color-glass-light),
-    var(--var-nebula-color-glass-dark)
+    var(--var-nebula-color-glass-light, rgb(255 255 255 / 25%)),
+    var(--var-nebula-color-glass-dark, rgb(20 20 20 / 45%))
   ) !important;
 
   /* 🖼️ Layout */
-  --nebula-border-radius: var(--var-nebula-border-radius) !important;
-  --nebula-essentials-width: var(--var-nebula-essentials-width) !important;
+  --nebula-border-radius: var(--var-nebula-border-radius, 13px) !important;
+  --nebula-essentials-width: var(--var-nebula-essentials-width, 60px) !important;
   --nebula-workspace-grayscale: var(
-    --var-nebula-workspace-grayscale
+    --var-nebula-workspace-grayscale,
+    100%
   ) !important;
 
   /* 🎨 UI & Website Tint */
   --nebula-ui-tint: light-dark(
-    var(--var-nebula-ui-tint-light),
-    var(--var-nebula-ui-tint-dark)
+    var(--var-nebula-ui-tint-light, rgb(255 255 255 / 15%)),
+    var(--var-nebula-ui-tint-dark, rgb(0 0 0 / 25%))
   ) !important;
   --nebula-website-tint: light-dark(
-    var(--var-nebula-website-tint-light),
-    var(--var-nebula-website-tint-dark)
+    var(--var-nebula-website-tint-light, rgb(255 255 255 / 0%)),
+    var(--var-nebula-website-tint-dark, rgb(0 0 0 / 0%))
   ) !important;
 
   /* 🔮 Colors */
   --nebula-color-min: light-dark(
-    var(--var-nebula-tabs-minimum-light),
-    var(--var-nebula-tabs-minimum-dark)
+    var(--var-nebula-tabs-minimum-light, rgb(255 255 255 / 10%)),
+    var(--var-nebula-tabs-minimum-dark, rgb(255 255 255 / 5%))
   ) !important;
   --nebula-color: light-dark(
-    var(--var-nebula-tabs-default-light),
-    var(--var-nebula-tabs-default-dark)
+    var(--var-nebula-tabs-default-light, rgb(255 255 255 / 20%)),
+    var(--var-nebula-tabs-default-dark, rgb(255 255 255 / 10%))
   ) !important;
   --nebula-color-hover: light-dark(
-    var(--var-nebula-tabs-hover-light),
-    var(--var-nebula-tabs-hover-dark)
+    var(--var-nebula-tabs-hover-light, rgb(255 255 255 / 35%)),
+    var(--var-nebula-tabs-hover-dark, rgb(255 255 255 / 18%))
   ) !important;
   --nebula-color-selected: light-dark(
-    var(--var-nebula-tabs-selected-light),
-    var(--var-nebula-tabs-selected-dark)
+    var(--var-nebula-tabs-selected-light, rgb(255 255 255 / 45%)),
+    var(--var-nebula-tabs-selected-dark, rgb(255 255 255 / 28%))
   ) !important;
   --nebula-color-shadow: light-dark(
-    var(--var-nebula-color-shadow-light),
-    var(--var-nebula-color-shadow-dark)
+    var(--var-nebula-color-shadow-light, rgb(0 0 0 / 8%)),
+    var(--var-nebula-color-shadow-dark, rgb(0 0 0 / 35%))
   ) !important;
-}
 
-/* DO NOT ADD OTHER CSS BELOW */
-/* More styles and options will come soon here! */
+  /* Native Zen Engine Overrides */
+  --zen-colors-tertiary: transparent !important;
+  --zen-colors-secondary: transparent !important;
+  --zen-main-browser-background: transparent !important;
+  --zen-sidebar-background: transparent !important;
+}
 
 /* Pre-defined backup values */
 :root {
   /* ✨ Glass & Blur */
-  --nebula-glass: blur(32px) saturate(140%);
-  --nebula-color-glass: light-dark(rgb(255 255 255 / 40%), rgb(0 0 0 / 40%));
+  --var-nebula-glass-blur: 32px !important;
+  --var-nebula-glass-saturation: 140% !important;
+  --var-nebula-color-glass-light: rgb(255 255 255 / 25%) !important;
+  --var-nebula-color-glass-dark: rgb(20 20 20 / 45%) !important;
 
   /* 🖼️ Layout */
-  --nebula-border-radius: 13px;
-  --nebula-essentials-width: 60px;
-  --nebula-workspace-grayscale: 100%;
+  --var-nebula-border-radius: 13px !important;
+  --var-nebula-essentials-width: 60px !important;
+  --var-nebula-workspace-grayscale: 100% !important;
 
   /* 🎨 UI & Website Tint */
-  --nebula-ui-tint: light-dark(rgb(255 255 255 / 20%), rgb(0 0 0 / 20%));
-  --nebula-website-tint: light-dark(rgb(255 255 255 / 0%), rgb(0 0 0 / 0%));
+  --var-nebula-ui-tint-light: rgb(255 255 255 / 15%) !important;
+  --var-nebula-ui-tint-dark: rgb(0 0 0 / 25%) !important;
+  --var-nebula-website-tint-light: rgb(255 255 255 / 0%) !important;
+  --var-nebula-website-tint-dark: rgb(0 0 0 / 0%) !important;
 
   /* 🔮 Colors */
-  --nebula-color-min: light-dark(rgb(255 255 255 / 10%), rgb(0 0 0 / 20%));
-  --nebula-color: light-dark(rgb(255 255 255 / 25%), rgb(0 0 0 / 35%));
-  --nebula-color-hover: light-dark(rgb(255 255 255 / 35%), rgb(0 0 0 / 45%));
-  --nebula-color-selected: light-dark(rgb(255 255 255 / 45%), rgb(0 0 0 / 55%));
-  --nebula-color-shadow: light-dark(rgb(255 255 255 / 5.5%), rgb(0 0 0 / 55%));
+  --var-nebula-tabs-minimum-light: rgb(255 255 255 / 10%) !important;
+  --var-nebula-tabs-minimum-dark: rgb(255 255 255 / 5%) !important;
+  --var-nebula-tabs-default-light: rgb(255 255 255 / 20%) !important;
+  --var-nebula-tabs-default-dark: rgb(255 255 255 / 10%) !important;
+  --var-nebula-tabs-hover-light: rgb(255 255 255 / 35%) !important;
+  --var-nebula-tabs-hover-dark: rgb(255 255 255 / 18%) !important;
+  --var-nebula-tabs-selected-light: rgb(255 255 255 / 45%) !important;
+  --var-nebula-tabs-selected-dark: rgb(255 255 255 / 28%) !important;
+  --var-nebula-color-shadow-light: rgb(0 0 0 / 8%) !important;
+  --var-nebula-color-shadow-dark: rgb(0 0 0 / 35%) !important;
+}
+
+/* ==========================================================================
+   1. REMOVE TOP BAR SQUARE ARTIFACTS
+   ========================================================================== */
+#navigator-toolbox,
+#zen-toolbar-background,
+#nav-bar,
+#urlbar-container,
+.urlbar-input-box {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  outline: none !important;
+}
+
+/* ==========================================================================
+   2. REMOVE GHOST / DOUBLE SIDEBAR BOXES
+   ========================================================================== */
+#titlebar,
+#titlebar::before,
+#titlebar::after,
+#zen-sidebar-background,
+#zen-sidebar-generic-background,
+.zen-browser-generic-background,
+#zen-browser-background,
+#zen-main-app-wrapper,
+#browser,
+#tabbrowser-tabbox,
+#tabbrowser-tabpanels,
+.browserSidebarContainer {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  contain: none !important;
+}
+
+/* ==========================================================================
+   3. CLEAN SINGLE-LAYER GLASS COMPACT SIDEBAR
+   ========================================================================== */
+#titlebar > .zen-browser-generic-background {
+  background-color: var(--nebula-color-glass) !important;
+  backdrop-filter: var(--nebula-glass) !important;
+  -webkit-backdrop-filter: var(--nebula-glass) !important;
+  border-radius: var(--nebula-border-radius) !important;
+  box-shadow: 0 8px 32px 0 var(--nebula-color-shadow) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Reset internal elements so they don't draw duplicate boxes */
+#vertical-tabs,
+#zen-tabs-wrapper,
+#tabbrowser-tabs,
+#TabsToolbar,
+#zen-sidebar-top-buttons,
+#zen-sidebar-icons-wrapper,
+#zen-sidebar-footers {
+  background: transparent !important;
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Individual tab items */
+#tabbrowser-tabs .tabbrowser-tab,
+#tabbrowser-tabs .tab-background,
+#tabbrowser-tabs .tab-stack {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+#tabbrowser-tabs .tabbrowser-tab:hover {
+  background-color: var(--nebula-color-hover) !important;
+}
+
+#tabbrowser-tabs .tabbrowser-tab[selected="true"] {
+  background-color: var(--nebula-color-selected) !important;
 }
