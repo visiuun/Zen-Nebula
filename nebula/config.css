@@ -77,3 +77,38 @@ without searching through the code directly */
   --nebula-color-selected: light-dark(rgb(255 255 255 / 45%), rgb(0 0 0 / 55%));
   --nebula-color-shadow: light-dark(rgb(255 255 255 / 5.5%), rgb(0 0 0 / 55%));
 }
+
+/* ==========================================================================
+   Zen-Nebula: Tab List & Sidebar Glass Blur Fix
+   ========================================================================== */
+
+/* 1. Prevent Zen's browser layer from cutting off backdrop-filter blur */
+#zen-browser-background,
+#browser,
+#zen-main-app-wrapper {
+  contain: none !important;
+}
+
+/* 2. Apply glass blur & translucent background to the tab list & sidebar wrapper */
+#zen-tabs-wrapper,
+#vertical-tabs,
+#tabbrowser-tabs,
+#TabsToolbar {
+  background-color: var(--nebula-color-glass, rgba(0, 0, 0, 0.45)) !important;
+  backdrop-filter: var(--nebula-glass, blur(32px) saturate(140%)) !important;
+  -webkit-backdrop-filter: var(--nebula-glass, blur(32px) saturate(140%)) !important;
+}
+
+/* 3. Ensure individual tabs and items don't cancel out the backdrop filter */
+#tabbrowser-tabs .tabbrowser-tab {
+  background-color: transparent;
+}
+
+#tabbrowser-tabs .tabbrowser-tab:hover {
+  background-color: var(--nebula-color-hover, rgba(255, 255, 255, 0.15)) !important;
+}
+
+#tabbrowser-tabs .tabbrowser-tab[selected="true"] {
+  background-color: var(--nebula-color-selected, rgba(255, 255, 255, 0.25)) !important;
+  backdrop-filter: var(--nebula-glass, blur(16px)) !important;
+}
