@@ -52,75 +52,88 @@ without searching through the code directly */
     var(--var-nebula-color-shadow-dark, rgb(0 0 0 / 35%))
   ) !important;
 
-  /* Strip default solid Zen layer colors */
+  /* Force all internal Zen backgrounds to yield to translucent glass */
   --zen-colors-tertiary: transparent !important;
   --zen-colors-secondary: transparent !important;
   --zen-main-browser-background: transparent !important;
   --zen-sidebar-background: transparent !important;
+  --zen-compact-mode-background: transparent !important;
 }
 
 /* Pre-defined backup values */
 :root {
   /* ✨ Glass & Blur */
-  --var-nebula-glass-blur: 32px;
-  --var-nebula-glass-saturation: 140%;
-  --var-nebula-color-glass-light: rgb(255 255 255 / 25%);
-  --var-nebula-color-glass-dark: rgb(15 15 15 / 45%);
+  --var-nebula-glass-blur: 32px !important;
+  --var-nebula-glass-saturation: 140% !important;
+  --var-nebula-color-glass-light: rgb(255 255 255 / 25%) !important;
+  --var-nebula-color-glass-dark: rgb(15 15 15 / 45%) !important;
 
   /* 🖼️ Layout */
-  --var-nebula-border-radius: 13px;
-  --var-nebula-essentials-width: 60px;
-  --var-nebula-workspace-grayscale: 100%;
+  --var-nebula-border-radius: 13px !important;
+  --var-nebula-essentials-width: 60px !important;
+  --var-nebula-workspace-grayscale: 100% !important;
 
   /* 🎨 UI & Website Tint */
-  --var-nebula-ui-tint-light: rgb(255 255 255 / 15%);
-  --var-nebula-ui-tint-dark: rgb(0 0 0 / 25%);
-  --var-nebula-website-tint-light: rgb(255 255 255 / 0%);
-  --var-nebula-website-tint-dark: rgb(0 0 0 / 0%);
+  --var-nebula-ui-tint-light: rgb(255 255 255 / 15%) !important;
+  --var-nebula-ui-tint-dark: rgb(0 0 0 / 25%) !important;
+  --var-nebula-website-tint-light: rgb(255 255 255 / 0%) !important;
+  --var-nebula-website-tint-dark: rgb(0 0 0 / 0%) !important;
 
   /* 🔮 Colors */
-  --var-nebula-tabs-minimum-light: rgb(255 255 255 / 10%);
-  --var-nebula-tabs-minimum-dark: rgb(255 255 255 / 5%);
-  --var-nebula-tabs-default-light: rgb(255 255 255 / 20%);
-  --var-nebula-tabs-default-dark: rgb(255 255 255 / 10%);
-  --var-nebula-tabs-hover-light: rgb(255 255 255 / 35%);
-  --var-nebula-tabs-hover-dark: rgb(255 255 255 / 18%);
-  --var-nebula-tabs-selected-light: rgb(255 255 255 / 45%);
-  --var-nebula-tabs-selected-dark: rgb(255 255 255 / 28%);
-  --var-nebula-color-shadow-light: rgb(0 0 0 / 8%);
-  --var-nebula-color-shadow-dark: rgb(0 0 0 / 35%);
+  --var-nebula-tabs-minimum-light: rgb(255 255 255 / 10%) !important;
+  --var-nebula-tabs-minimum-dark: rgb(255 255 255 / 5%) !important;
+  --var-nebula-tabs-default-light: rgb(255 255 255 / 20%) !important;
+  --var-nebula-tabs-default-dark: rgb(255 255 255 / 10%) !important;
+  --var-nebula-tabs-hover-light: rgb(255 255 255 / 35%) !important;
+  --var-nebula-tabs-hover-dark: rgb(255 255 255 / 18%) !important;
+  --var-nebula-tabs-selected-light: rgb(255 255 255 / 45%) !important;
+  --var-nebula-tabs-selected-dark: rgb(255 255 255 / 28%) !important;
+  --var-nebula-color-shadow-light: rgb(0 0 0 / 8%) !important;
+  --var-nebula-color-shadow-dark: rgb(0 0 0 / 35%) !important;
 }
 
 /* ==========================================================================
-   Tab List Glass & Blur Rendering Fix
+   KILL SOLID BLACK / OPAQUE LAYERS IN COMPACT SIDEBAR & BROWSER
    ========================================================================== */
 
-/* Remove paint containment that disables backdrop-filter over active pages */
+#main-window,
 #zen-browser-background,
 #zen-main-app-wrapper,
 #browser,
 #appcontent,
-#tabbrowser-tabpanels {
-  contain: none !important;
-  background-color: transparent !important;
-}
-
-/* Remove default solid backgrounds from Zen sidebar hierarchy */
+#tabbrowser-tabpanels,
+.browserSidebarContainer,
 #navigator-toolbox,
 #TabsToolbar,
 #titlebar,
-.zen-browser-generic-background,
 #zen-sidebar-background,
 #zen-sidebar-top-buttons,
 #zen-sidebar-icons-wrapper,
-#zen-sidebar-footers {
+#zen-sidebar-footers,
+#zen-sidebar-generic-background,
+.zen-browser-generic-background {
   background: transparent !important;
   background-color: transparent !important;
+  contain: none !important;
 }
 
-/* Apply translucent glass and blur to the tab sidebar wrapper */
+/* Force content layer composition so backdrop-filter can read through web pages */
+#tabbrowser-tabpanels browser[type="content"] {
+  transform: translateZ(0) !important;
+}
+
+/* ==========================================================================
+   APPLY GLASS BLUR TO COMPACT EXPANDED TAB CONTAINER
+   ========================================================================== */
+
+#vertical-tabs,
 #zen-tabs-wrapper,
-#vertical-tabs {
+#tabbrowser-tabs,
+#navigator-toolbox[zen-floating="true"],
+#vertical-tabs[zen-compact-mode="true"],
+#vertical-tabs[compact="true"],
+#sidebar-box {
+  background: var(--nebula-color-glass) !important;
   background-color: var(--nebula-color-glass) !important;
   backdrop-filter: var(--nebula-glass) !important;
   -webkit-backdrop-filter: var(--nebula-glass) !important;
@@ -128,10 +141,12 @@ without searching through the code directly */
   box-shadow: 0 8px 32px 0 var(--nebula-color-shadow) !important;
 }
 
-/* Individual tab items */
-#tabbrowser-tabs .tabbrowser-tab {
+/* Individual tab transparent reset */
+#tabbrowser-tabs .tabbrowser-tab,
+#tabbrowser-tabs .tab-background,
+#tabbrowser-tabs .tab-stack {
+  background: transparent !important;
   background-color: transparent !important;
-  border-radius: 8px !important;
 }
 
 #tabbrowser-tabs .tabbrowser-tab:hover {
@@ -140,9 +155,4 @@ without searching through the code directly */
 
 #tabbrowser-tabs .tabbrowser-tab[selected="true"] {
   background-color: var(--nebula-color-selected) !important;
-}
-
-#tabbrowser-tabs .tab-background {
-  background: transparent !important;
-  background-color: transparent !important;
 }
